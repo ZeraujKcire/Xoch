@@ -267,26 +267,7 @@ Mirceno:10        3.758      h
 a-Terpineno:10    3.083      i
 a-Terpineno:1000  2.663      i
 
-" --- TABLA SD TRATAMIENTOS (reducido) --- "
-     Compuesto Concentracion    Mean                Sd
-1     a-Pineno            10 10.5045  2.37663954488597
-2     a-Pineno          1000 11.2813  1.78817522690179
-3  a-Terpineno            10   3.744 0.765797829580023
-4  a-Terpineno          1000   3.935  1.36729275346731
-5   D-limoneno            10  7.8555  3.76457514902168
-6   D-limoneno          1000   9.335  3.11813287586962
-7     Dodecano            10 11.7645  4.04506909055561
-8     Dodecano          1000  13.016  3.93320065193998
-9     Globulol            10    12.2 0.704586478200624
-10    Globulol          1000   13.16 0.564008211959626
-11     Mirceno            10  6.0918  2.43133265601615
-12     Mirceno          1000  8.3665  1.92056536358164
-13   Nerolidol            10  8.5875  2.05462475764721
-14   Nerolidol          1000  14.026  3.12582351254497
-15     Ocimeno            10  6.1924 0.407113381336401
-16     Ocimeno          1000  7.6735 0.406451589659632
-
-" --- TABLA SD TRATAMIENTOS (reducido) --- "
+" --- TABLA SD TRATAMIENTOS (machos) --- "
      Compuesto Concentracion   Mean                Sd
 1     a-Pineno            10 12.568 0.631977496083172
 2     a-Pineno          1000 12.735 0.541566657434193
