@@ -1,0 +1,312 @@
+		[1] " --- SUPUESTOS DEL MODELO --- "
+
+	[1] " --- 1. NORMALIDAD --- "
+
+[1] "Shapiro Test."
+
+	Shapiro-Wilk normality test
+
+data:  residuos
+W = 0.94059, p-value = 3.037e-06
+
+	[1] " --- 2. HOMOCEDASTICIDAD --- "
+
+Levene's Test for Homogeneity of Variance (center = median)
+       Df F value   Pr(>F)    
+group  15  7.4817 4.42e-12 ***
+      144                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+	Bartlett test of homogeneity of variances
+
+data:  mV by interaction(Concentracion, Compuesto)
+Bartlett's K-squared = 102.56, df = 15, p-value = 4.265e-15
+
+
+[1] " --- 3. INDEPENDENCIA --- "
+
+	Durbin-Watson test
+
+data:  regresion_lineal
+DW = 1.2516, p-value = 7.39e-10
+alternative hypothesis: true autocorrelation is greater than 0
+
+
+[1] " --- ANOVA --- "
+
+Analysis of Variance Table
+
+Response: mV
+                         Df Sum Sq Mean Sq  F value    Pr(>F)    
+Compuesto                 7 964.44 137.778 350.8900 < 2.2e-16 ***
+Concentracion             1  48.63  48.633 123.8589 < 2.2e-16 ***
+Compuesto:Concentracion   7  13.07   1.868   4.7567 7.809e-05 ***
+Residuals               144  56.54   0.393                       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "SUMA DE CUADRADOS:"
+[1] 1082.694
+[1] "GRADOS DE LIBERTAD DE SCT:"
+[1] 159
+[1] "Desv. Estand."
+[1] 2.609482
+
+
+[1] " --- TUKEY COMPARACIONES --- "
+
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = regresion_lineal)
+
+$Compuesto
+                          diff        lwr          upr     p adj
+a-Terpineno-a-Pineno   -4.3283 -4.9378254 -3.718774583 0.0000000
+D-limoneno-a-Pineno     2.7777  2.1681746  3.387225417 0.0000000
+Dodecano-a-Pineno      -0.6023 -1.2118254  0.007225417 0.0552908
+Globulol-a-Pineno       3.6202  3.0106746  4.229725417 0.0000000
+Mirceno-a-Pineno        0.1770 -0.4325254  0.786525417 0.9862692
+Nerolidol-a-Pineno      1.7437  1.1341746  2.353225417 0.0000000
+Ocimeno-a-Pineno       -2.3184 -2.9279254 -1.708874583 0.0000000
+D-limoneno-a-Terpineno  7.1060  6.4964746  7.715525417 0.0000000
+Dodecano-a-Terpineno    3.7260  3.1164746  4.335525417 0.0000000
+Globulol-a-Terpineno    7.9485  7.3389746  8.558025417 0.0000000
+Mirceno-a-Terpineno     4.5053  3.8957746  5.114825417 0.0000000
+Nerolidol-a-Terpineno   6.0720  5.4624746  6.681525417 0.0000000
+Ocimeno-a-Terpineno     2.0099  1.4003746  2.619425417 0.0000000
+Dodecano-D-limoneno    -3.3800 -3.9895254 -2.770474583 0.0000000
+Globulol-D-limoneno     0.8425  0.2329746  1.452025417 0.0009713
+Mirceno-D-limoneno     -2.6007 -3.2102254 -1.991174583 0.0000000
+Nerolidol-D-limoneno   -1.0340 -1.6435254 -0.424474583 0.0000168
+Ocimeno-D-limoneno     -5.0961 -5.7056254 -4.486574583 0.0000000
+Globulol-Dodecano       4.2225  3.6129746  4.832025417 0.0000000
+Mirceno-Dodecano        0.7793  0.1697746  1.388825417 0.0031953
+Nerolidol-Dodecano      2.3460  1.7364746  2.955525417 0.0000000
+Ocimeno-Dodecano       -1.7161 -2.3256254 -1.106574583 0.0000000
+Mirceno-Globulol       -3.4432 -4.0527254 -2.833674583 0.0000000
+Nerolidol-Globulol     -1.8765 -2.4860254 -1.266974583 0.0000000
+Ocimeno-Globulol       -5.9386 -6.5481254 -5.329074583 0.0000000
+Nerolidol-Mirceno       1.5667  0.9571746  2.176225417 0.0000000
+Ocimeno-Mirceno        -2.4954 -3.1049254 -1.885874583 0.0000000
+Ocimeno-Nerolidol      -4.0621 -4.6716254 -3.452574583 0.0000000
+
+$Concentracion
+           diff       lwr      upr p adj
+1000-10 1.10265 0.9068163 1.298484     0
+
+$`Compuesto:Concentracion`
+                                    diff          lwr        upr     p adj
+a-Terpineno:10-a-Pineno:10       -4.0360 -5.013358802 -3.0586412 0.0000000
+D-limoneno:10-a-Pineno:10         3.0770  2.099641198  4.0543588 0.0000000
+Dodecano:10-a-Pineno:10          -0.5920 -1.569358802  0.3853588 0.7540221
+Globulol:10-a-Pineno:10           4.2460  3.268641198  5.2233588 0.0000000
+Mirceno:10-a-Pineno:10           -0.0154 -0.992758802  0.9619588 1.0000000
+Nerolidol:10-a-Pineno:10          2.1150  1.137641198  3.0923588 0.0000000
+Ocimeno:10-a-Pineno:10           -2.5892 -3.566558802 -1.6118412 0.0000000
+a-Pineno:1000-a-Pineno:10         1.3866  0.409241198  2.3639588 0.0002282
+a-Terpineno:1000-a-Pineno:10     -3.2340 -4.211358802 -2.2566412 0.0000000
+D-limoneno:1000-a-Pineno:10       3.8650  2.887641198  4.8423588 0.0000000
+Dodecano:1000-a-Pineno:10         0.7740 -0.203358802  1.7513588 0.3032654
+Globulol:1000-a-Pineno:10         4.3810  3.403641198  5.3583588 0.0000000
+Mirceno:1000-a-Pineno:10          1.7560  0.778641198  2.7333588 0.0000005
+Nerolidol:1000-a-Pineno:10        2.7590  1.781641198  3.7363588 0.0000000
+Ocimeno:1000-a-Pineno:10         -0.6610 -1.638358802  0.3163588 0.5812468
+D-limoneno:10-a-Terpineno:10      7.1130  6.135641198  8.0903588 0.0000000
+Dodecano:10-a-Terpineno:10        3.4440  2.466641198  4.4213588 0.0000000
+Globulol:10-a-Terpineno:10        8.2820  7.304641198  9.2593588 0.0000000
+Mirceno:10-a-Terpineno:10         4.0206  3.043241198  4.9979588 0.0000000
+Nerolidol:10-a-Terpineno:10       6.1510  5.173641198  7.1283588 0.0000000
+Ocimeno:10-a-Terpineno:10         1.4468  0.469441198  2.4241588 0.0000894
+a-Pineno:1000-a-Terpineno:10      5.4226  4.445241198  6.3999588 0.0000000
+a-Terpineno:1000-a-Terpineno:10   0.8020 -0.175358802  1.7793588 0.2476073
+D-limoneno:1000-a-Terpineno:10    7.9010  6.923641198  8.8783588 0.0000000
+Dodecano:1000-a-Terpineno:10      4.8100  3.832641198  5.7873588 0.0000000
+Globulol:1000-a-Terpineno:10      8.4170  7.439641198  9.3943588 0.0000000
+Mirceno:1000-a-Terpineno:10       5.7920  4.814641198  6.7693588 0.0000000
+Nerolidol:1000-a-Terpineno:10     6.7950  5.817641198  7.7723588 0.0000000
+Ocimeno:1000-a-Terpineno:10       3.3750  2.397641198  4.3523588 0.0000000
+Dodecano:10-D-limoneno:10        -3.6690 -4.646358802 -2.6916412 0.0000000
+Globulol:10-D-limoneno:10         1.1690  0.191641198  2.1463588 0.0050918
+Mirceno:10-D-limoneno:10         -3.0924 -4.069758802 -2.1150412 0.0000000
+Nerolidol:10-D-limoneno:10       -0.9620 -1.939358802  0.0153588 0.0587244
+Ocimeno:10-D-limoneno:10         -5.6662 -6.643558802 -4.6888412 0.0000000
+a-Pineno:1000-D-limoneno:10      -1.6904 -2.667758802 -0.7130412 0.0000015
+a-Terpineno:1000-D-limoneno:10   -6.3110 -7.288358802 -5.3336412 0.0000000
+D-limoneno:1000-D-limoneno:10     0.7880 -0.189358802  1.7653588 0.2745688
+Dodecano:1000-D-limoneno:10      -2.3030 -3.280358802 -1.3256412 0.0000000
+Globulol:1000-D-limoneno:10       1.3040  0.326641198  2.2813588 0.0007837
+Mirceno:1000-D-limoneno:10       -1.3210 -2.298358802 -0.3436412 0.0006111
+Nerolidol:1000-D-limoneno:10     -0.3180 -1.295358802  0.6593588 0.9989548
+Ocimeno:1000-D-limoneno:10       -3.7380 -4.715358802 -2.7606412 0.0000000
+Globulol:10-Dodecano:10           4.8380  3.860641198  5.8153588 0.0000000
+Mirceno:10-Dodecano:10            0.5766 -0.400758802  1.5539588 0.7881124
+Nerolidol:10-Dodecano:10          2.7070  1.729641198  3.6843588 0.0000000
+Ocimeno:10-Dodecano:10           -1.9972 -2.974558802 -1.0198412 0.0000000
+a-Pineno:1000-Dodecano:10         1.9786  1.001241198  2.9559588 0.0000000
+a-Terpineno:1000-Dodecano:10     -2.6420 -3.619358802 -1.6646412 0.0000000
+D-limoneno:1000-Dodecano:10       4.4570  3.479641198  5.4343588 0.0000000
+Dodecano:1000-Dodecano:10         1.3660  0.388641198  2.3433588 0.0003123
+Globulol:1000-Dodecano:10         4.9730  3.995641198  5.9503588 0.0000000
+Mirceno:1000-Dodecano:10          2.3480  1.370641198  3.3253588 0.0000000
+Nerolidol:1000-Dodecano:10        3.3510  2.373641198  4.3283588 0.0000000
+Ocimeno:1000-Dodecano:10         -0.0690 -1.046358802  0.9083588 1.0000000
+Mirceno:10-Globulol:10           -4.2614 -5.238758802 -3.2840412 0.0000000
+Nerolidol:10-Globulol:10         -2.1310 -3.108358802 -1.1536412 0.0000000
+Ocimeno:10-Globulol:10           -6.8352 -7.812558802 -5.8578412 0.0000000
+a-Pineno:1000-Globulol:10        -2.8594 -3.836758802 -1.8820412 0.0000000
+a-Terpineno:1000-Globulol:10     -7.4800 -8.457358802 -6.5026412 0.0000000
+D-limoneno:1000-Globulol:10      -0.3810 -1.358358802  0.5963588 0.9926337
+Dodecano:1000-Globulol:10        -3.4720 -4.449358802 -2.4946412 0.0000000
+Globulol:1000-Globulol:10         0.1350 -0.842358802  1.1123588 1.0000000
+Mirceno:1000-Globulol:10         -2.4900 -3.467358802 -1.5126412 0.0000000
+Nerolidol:1000-Globulol:10       -1.4870 -2.464358802 -0.5096412 0.0000471
+Ocimeno:1000-Globulol:10         -4.9070 -5.884358802 -3.9296412 0.0000000
+Nerolidol:10-Mirceno:10           2.1304  1.153041198  3.1077588 0.0000000
+Ocimeno:10-Mirceno:10            -2.5738 -3.551158802 -1.5964412 0.0000000
+a-Pineno:1000-Mirceno:10          1.4020  0.424641198  2.3793588 0.0001801
+a-Terpineno:1000-Mirceno:10      -3.2186 -4.195958802 -2.2412412 0.0000000
+D-limoneno:1000-Mirceno:10        3.8804  2.903041198  4.8577588 0.0000000
+Dodecano:1000-Mirceno:10          0.7894 -0.187958802  1.7667588 0.2717935
+Globulol:1000-Mirceno:10          4.3964  3.419041198  5.3737588 0.0000000
+Mirceno:1000-Mirceno:10           1.7714  0.794041198  2.7487588 0.0000004
+Nerolidol:1000-Mirceno:10         2.7744  1.797041198  3.7517588 0.0000000
+Ocimeno:1000-Mirceno:10          -0.6456 -1.622958802  0.3317588 0.6215783
+Ocimeno:10-Nerolidol:10          -4.7042 -5.681558802 -3.7268412 0.0000000
+a-Pineno:1000-Nerolidol:10       -0.7284 -1.705758802  0.2489588 0.4075688
+a-Terpineno:1000-Nerolidol:10    -5.3490 -6.326358802 -4.3716412 0.0000000
+D-limoneno:1000-Nerolidol:10      1.7500  0.772641198  2.7273588 0.0000005
+Dodecano:1000-Nerolidol:10       -1.3410 -2.318358802 -0.3636412 0.0004545
+Globulol:1000-Nerolidol:10        2.2660  1.288641198  3.2433588 0.0000000
+Mirceno:1000-Nerolidol:10        -0.3590 -1.336358802  0.6183588 0.9960214
+Nerolidol:1000-Nerolidol:10       0.6440 -0.333358802  1.6213588 0.6257383
+Ocimeno:1000-Nerolidol:10        -2.7760 -3.753358802 -1.7986412 0.0000000
+a-Pineno:1000-Ocimeno:10          3.9758  2.998441198  4.9531588 0.0000000
+a-Terpineno:1000-Ocimeno:10      -0.6448 -1.622158802  0.3325588 0.6236592
+D-limoneno:1000-Ocimeno:10        6.4542  5.476841198  7.4315588 0.0000000
+Dodecano:1000-Ocimeno:10          3.3632  2.385841198  4.3405588 0.0000000
+Globulol:1000-Ocimeno:10          6.9702  5.992841198  7.9475588 0.0000000
+Mirceno:1000-Ocimeno:10           4.3452  3.367841198  5.3225588 0.0000000
+Nerolidol:1000-Ocimeno:10         5.3482  4.370841198  6.3255588 0.0000000
+Ocimeno:1000-Ocimeno:10           1.9282  0.950841198  2.9055588 0.0000000
+a-Terpineno:1000-a-Pineno:1000   -4.6206 -5.597958802 -3.6432412 0.0000000
+D-limoneno:1000-a-Pineno:1000     2.4784  1.501041198  3.4557588 0.0000000
+Dodecano:1000-a-Pineno:1000      -0.6126 -1.589958802  0.3647588 0.7052205
+Globulol:1000-a-Pineno:1000       2.9944  2.017041198  3.9717588 0.0000000
+Mirceno:1000-a-Pineno:1000        0.3694 -0.607958802  1.3467588 0.9946335
+Nerolidol:1000-a-Pineno:1000      1.3724  0.395041198  2.3497588 0.0002834
+Ocimeno:1000-a-Pineno:1000       -2.0476 -3.024958802 -1.0702412 0.0000000
+D-limoneno:1000-a-Terpineno:1000  7.0990  6.121641198  8.0763588 0.0000000
+Dodecano:1000-a-Terpineno:1000    4.0080  3.030641198  4.9853588 0.0000000
+Globulol:1000-a-Terpineno:1000    7.6150  6.637641198  8.5923588 0.0000000
+Mirceno:1000-a-Terpineno:1000     4.9900  4.012641198  5.9673588 0.0000000
+Nerolidol:1000-a-Terpineno:1000   5.9930  5.015641198  6.9703588 0.0000000
+Ocimeno:1000-a-Terpineno:1000     2.5730  1.595641198  3.5503588 0.0000000
+Dodecano:1000-D-limoneno:1000    -3.0910 -4.068358802 -2.1136412 0.0000000
+Globulol:1000-D-limoneno:1000     0.5160 -0.461358802  1.4933588 0.8968125
+Mirceno:1000-D-limoneno:1000     -2.1090 -3.086358802 -1.1316412 0.0000000
+Nerolidol:1000-D-limoneno:1000   -1.1060 -2.083358802 -0.1286412 0.0113742
+Ocimeno:1000-D-limoneno:1000     -4.5260 -5.503358802 -3.5486412 0.0000000
+Globulol:1000-Dodecano:1000       3.6070  2.629641198  4.5843588 0.0000000
+Mirceno:1000-Dodecano:1000        0.9820  0.004641198  1.9593588 0.0475941
+Nerolidol:1000-Dodecano:1000      1.9850  1.007641198  2.9623588 0.0000000
+Ocimeno:1000-Dodecano:1000       -1.4350 -2.412358802 -0.4576412 0.0001077
+Mirceno:1000-Globulol:1000       -2.6250 -3.602358802 -1.6476412 0.0000000
+Nerolidol:1000-Globulol:1000     -1.6220 -2.599358802 -0.6446412 0.0000050
+Ocimeno:1000-Globulol:1000       -5.0420 -6.019358802 -4.0646412 0.0000000
+Nerolidol:1000-Mirceno:1000       1.0030  0.025641198  1.9803588 0.0379222
+Ocimeno:1000-Mirceno:1000        -2.4170 -3.394358802 -1.4396412 0.0000000
+Ocimeno:1000-Nerolidol:1000      -3.4200 -4.397358802 -2.4426412 0.0000000
+
+
+
+[1] "--- LSD ---"
+
+Study: regresion_lineal ~ c("Compuesto", "Concentracion")
+
+LSD t Test for mV 
+
+Mean Square Error:  0.3926522 
+
+Compuesto:Concentracion,  means and individual ( 95 %) CI
+
+                      mV       std  r       LCL       UCL   Min   Max
+a-Pineno:10       8.4410 1.4362254 10  8.049333  8.832667  6.26 10.55
+a-Pineno:1000     9.8276 1.3270401 10  9.435933 10.219267  7.57 11.35
+a-Terpineno:10    4.4050 0.5041880 10  4.013333  4.796667  3.79  5.37
+a-Terpineno:1000  5.2070 0.5597827 10  4.815333  5.598667  4.25  5.80
+D-limoneno:10    11.5180 0.2983585 10 11.126333 11.909667 11.18 12.06
+D-limoneno:1000  12.3060 0.4016687 10 11.914333 12.697667 11.93 13.26
+Dodecano:10       7.8490 0.1939903 10  7.457333  8.240667  7.54  8.15
+Dodecano:1000     9.2150 0.2153679 10  8.823333  9.606667  8.94  9.67
+Globulol:10      12.6870 0.5827530 10 12.295333 13.078667 11.79 13.76
+Globulol:1000    12.8220 0.2198383 10 12.430333 13.213667 12.52 13.13
+Mirceno:10        8.4256 0.4705059 10  8.033933  8.817267  7.94  9.18
+Mirceno:1000     10.1970 0.3203835 10  9.805333 10.588667  9.79 10.82
+Nerolidol:10     10.5560 0.3608385 10 10.164333 10.947667  9.74 10.92
+Nerolidol:1000   11.2000 0.6318052 10 10.808333 11.591667  9.70 11.64
+Ocimeno:10        5.8518 0.2553228 10  5.460133  6.243467  5.31  6.18
+Ocimeno:1000      7.7800 0.5002000 10  7.388333  8.171667  6.90  8.25
+
+Alpha: 0.05 ; DF Error: 144
+Critical Value of t: 1.976575 
+
+least Significant Difference: 0.5539012 
+
+Treatments with the same letter are not significantly different.
+
+                      mV groups
+Globulol:1000    12.8220      a
+Globulol:10      12.6870      a
+D-limoneno:1000  12.3060      a
+D-limoneno:10    11.5180      b
+Nerolidol:1000   11.2000      b
+Nerolidol:10     10.5560      c
+Mirceno:1000     10.1970     cd
+a-Pineno:1000     9.8276      d
+Dodecano:1000     9.2150      e
+a-Pineno:10       8.4410      f
+Mirceno:10        8.4256      f
+Dodecano:10       7.8490      g
+Ocimeno:1000      7.7800      g
+Ocimeno:10        5.8518      h
+a-Terpineno:1000  5.2070      i
+a-Terpineno:10    4.4050      j
+
+" --- TABLA SD TRATAMIENTOS (reducido) --- "
+     Compuesto Concentracion    Mean                Sd
+1     a-Pineno            10 10.5045  2.37663954488597
+2     a-Pineno          1000 11.2813  1.78817522690179
+3  a-Terpineno            10   3.744 0.765797829580023
+4  a-Terpineno          1000   3.935  1.36729275346731
+5   D-limoneno            10  7.8555  3.76457514902168
+6   D-limoneno          1000   9.335  3.11813287586962
+7     Dodecano            10 11.7645  4.04506909055561
+8     Dodecano          1000  13.016  3.93320065193998
+9     Globulol            10    12.2 0.704586478200624
+10    Globulol          1000   13.16 0.564008211959626
+11     Mirceno            10  6.0918  2.43133265601615
+12     Mirceno          1000  8.3665  1.92056536358164
+13   Nerolidol            10  8.5875  2.05462475764721
+14   Nerolidol          1000  14.026  3.12582351254497
+15     Ocimeno            10  6.1924 0.407113381336401
+16     Ocimeno          1000  7.6735 0.406451589659632
+
+" --- TABLA SD TRATAMIENTOS (reducido) --- "
+     Compuesto Concentracion   Mean                Sd
+1     a-Pineno            10  8.441  1.43622537692847
+2     a-Pineno          1000 9.8276  1.32704008145111
+3  a-Terpineno            10  4.405 0.504188016076895
+4  a-Terpineno          1000  5.207  0.55978269593358
+5   D-limoneno            10 11.518 0.298358471939005
+6   D-limoneno          1000 12.306 0.401668741350105
+7     Dodecano            10  7.849 0.193990263214993
+8     Dodecano          1000  9.215 0.215367902281964
+9     Globulol            10 12.687 0.582753044703424
+10    Globulol          1000 12.822  0.21983832443159
+11     Mirceno            10 8.4256 0.470505921559147
+12     Mirceno          1000 10.197 0.320383450814108
+13   Nerolidol            10 10.556 0.360838529600768
+14   Nerolidol          1000   11.2 0.631805173908681
+15     Ocimeno            10 5.8518 0.255322802219726
+16     Ocimeno          1000   7.78 0.500199960015992
