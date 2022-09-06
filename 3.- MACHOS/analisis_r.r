@@ -24,13 +24,13 @@ regresion_lineal = lm(mV ~ Compuesto * Concentracion,data = datos)
 
 # === CAJAS SIMULTÁNEAS === (((
 sprintf(" --- DIAGRAMA DE CAJAS SIMULTÁNEAS --- ")
-ggplot(datos) + aes(x=Compuesto,y=mV, fill = Compuesto) + geom_boxplot(alpha=0.8) + theme(axis.text.x = element_blank(), legend.position = "bottom")
-ggplot(datos) + aes(x=Compuesto,y=mV, fill = Compuesto) + geom_boxplot(alpha=0.8) + facet_wrap(~Concentracion)  + theme(legend.position =  "bottom",text = element_text(size = 12), axis.text.x = element_blank())
-ggplot(datos) + aes(x=Concentracion,y=mV, fill = Concentracion) + geom_boxplot(alpha=0.8)  
-ggplot(datos) + aes(x=Concentracion,y=mV, fill = Concentracion) + geom_boxplot(alpha=0.8) + facet_wrap(~Compuesto) 
+# ggplot(datos) + aes(x=Compuesto,y=mV, fill = Compuesto) + geom_boxplot(alpha=0.8) + theme(axis.text.x = element_blank(), legend.position = "bottom")
+# ggplot(datos) + aes(x=Compuesto,y=mV, fill = Compuesto) + geom_boxplot(alpha=0.8) + facet_wrap(~Concentracion)  + theme(legend.position =  "bottom",text = element_text(size = 12), axis.text.x = element_blank())
+# ggplot(datos) + aes(x=Concentracion,y=mV, fill = Concentracion) + geom_boxplot(alpha=0.8)  
+# ggplot(datos) + aes(x=Concentracion,y=mV, fill = Concentracion) + geom_boxplot(alpha=0.8) + facet_wrap(~Compuesto) 
 
 # GRAFICO IMPORTANTE :)
-ggplot(datos) + aes(x=Compuesto,y=mV, fill = Concentracion) + scale_fill_grey() + geom_boxplot(alpha=0.8) + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
+# ggplot(datos) + aes(x=Compuesto,y=mV, fill = Concentracion) + scale_fill_grey() + geom_boxplot(alpha=0.8) + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
 # )))
 
 # === SUPUESTOS DEL MODELO === (((
@@ -99,7 +99,7 @@ LSD.test(regresion_lineal , c("Compuesto" , "Concentracion") , alpha=0.05 , cons
 # )))
 
 # === TABLA SD TRATAMIENTOS (machos) === (((
-sprintf(" --- TABLA SD TRATAMIENTOS (machos) --- ")
+sprintf(" --- TABLA SD TRATAMIENTOS (hembras) --- ")
 tabla_sd_reducida = data.frame(matrix(ncol = 4,nrow = 0))
 for(comp in levels(Compuesto))
 	for (conc in levels(Concentracion))
@@ -112,25 +112,30 @@ for(comp in levels(Compuesto))
 			
 tabla_sd_reducida = SetNames(tabla_sd_reducida, c("Compuesto", "Concentracion", "Mean", "Sd"))
 tabla_sd_reducida
+
+# GRAFICA DEL AMOR
+grafica = data.frame(mean = as.numeric(tabla_sd_reducida$Mean), sd = as.numeric(tabla_sd_reducida$Sd), Compuesto = as.factor(tabla_sd_reducida$Compuesto), Concentracion = as.factor(tabla_sd_reducida$Concentracion))
+str(grafica)
+ggplot(grafica ,aes(x=Compuesto,fill = Concentracion)) + scale_fill_grey() + geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity") + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
 # )))
 
 # === TABLA SD COMPUESTOS (machos) === (((
-sprintf(" --- TABLA SD COMPUESTOS (machos) --- ")
-tabla_sd_compuestos = data.frame(matrix(ncol = 3,nrow = 0))
-for(comp in levels(Compuesto))
-	{
-		nd = filter(datos,Compuesto == comp)
-		mean = mean(nd$mV)
-		desv_stand = sd(nd$mV)
-		tabla_sd_compuestos = rbind(tabla_sd_compuestos , c(comp, mean,desv_stand))
-	}
-			
-tabla_sd_compuestos = SetNames(tabla_sd_compuestos, c("Compuesto", "Mean", "Sd"))
-tabla_sd_compuestos
+# sprintf(" --- TABLA SD COMPUESTOS (machos) --- ")
+# tabla_sd_compuestos = data.frame(matrix(ncol = 3,nrow = 0))
+# for(comp in levels(Compuesto))
+	# {
+		# nd = filter(datos,Compuesto == comp)
+		# mean = mean(nd$mV)
+		# desv_stand = sd(nd$mV)
+		# tabla_sd_compuestos = rbind(tabla_sd_compuestos , c(comp, mean,desv_stand))
+	# }
+			# 
+# tabla_sd_compuestos = SetNames(tabla_sd_compuestos, c("Compuesto", "Mean", "Sd"))
+# tabla_sd_compuestos
 
 # GRAFICA DEL AMOR
-grafica = data.frame(mean = as.numeric(tabla_sd_compuestos$Mean), sd = as.numeric(tabla_sd_compuestos$Sd), Compuesto = as.factor(tabla_sd_compuestos$Compuesto))
-str(grafica)
-ggplot(grafica ,aes(x=Compuesto) )+ geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity")
+# grafica = data.frame(mean = as.numeric(tabla_sd_compuestos$Mean), sd = as.numeric(tabla_sd_compuestos$Sd), Compuesto = as.factor(tabla_sd_compuestos$Compuesto))
+# str(grafica)
+# ggplot(grafica ,aes(x=Compuesto) )+ geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity")
 # + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
 # )))

@@ -265,7 +265,7 @@ D-limoneno:10     4.193      h
 Mirceno:10        3.758      h
 a-Terpineno:10    3.083      i
 a-Terpineno:1000  2.663      i
-[1] " --- TABLA SD TRATAMIENTOS (machos) --- "
+[1] " --- TABLA SD TRATAMIENTOS (hembras) --- "
      Compuesto Concentracion   Mean                Sd
 1     a-Pineno            10 12.568 0.631977496083172
 2     a-Pineno          1000 12.735 0.541566657434193
@@ -283,17 +283,8 @@ a-Terpineno:1000  2.663      i
 14   Nerolidol          1000 16.852  1.57503298025435
 15     Ocimeno            10  6.533 0.164049450539227
 16     Ocimeno          1000  7.567 0.270844358749941
-[1] " --- TABLA SD COMPUESTOS (machos) --- "
-    Compuesto    Mean                Sd
-1    a-Pineno 12.6515 0.579185226258223
-2 a-Terpineno   2.873 0.265431128940308
-3  D-limoneno  5.2785  1.26696601956676
-4    Dodecano 16.2485 0.887137768924665
-5   Globuleno 12.6055   1.0485050761617
-6     Mirceno   5.147   1.4889455824067
-7   Nerolidol 11.7355  5.36771290608069
-8     Ocimeno    7.05 0.573456739064899
-'data.frame':	8 obs. of  3 variables:
- $ mean     : num  12.65 2.87 5.28 16.25 12.61 ...
- $ sd       : num  0.579 0.265 1.267 0.887 1.049 ...
- $ Compuesto: Factor w/ 8 levels "a-Pineno","a-Terpineno",..: 1 2 3 4 5 6 7 8
+'data.frame':	16 obs. of  4 variables:
+ $ mean         : num  12.57 12.73 3.08 2.66 4.19 ...
+ $ sd           : num  0.632 0.542 0.114 0.194 0.145 ...
+ $ Compuesto    : Factor w/ 8 levels "a-Pineno","a-Terpineno",..: 1 1 2 2 3 3 4 4 5 5 ...
+ $ Concentracion: Factor w/ 2 levels "10","1000": 1 2 1 2 1 2 1 2 1 2 ...
