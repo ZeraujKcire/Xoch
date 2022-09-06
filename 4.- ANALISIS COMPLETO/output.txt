@@ -294,6 +294,7 @@ Ocimeno:10        6.1924     hi
 Mirceno:10        6.0918      i
 a-Terpineno:1000  3.9350      j
 a-Terpineno:10    3.7440      j
+
 [1] " --- LSD (con Modelo Completo) --- "
 
 Study: regresion_lineal ~ c("Sexo", "Compuesto", "Concentracion")

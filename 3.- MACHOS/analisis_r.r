@@ -30,7 +30,7 @@ ggplot(datos) + aes(x=Concentracion,y=mV, fill = Concentracion) + geom_boxplot(a
 ggplot(datos) + aes(x=Concentracion,y=mV, fill = Concentracion) + geom_boxplot(alpha=0.8) + facet_wrap(~Compuesto) 
 
 # GRAFICO IMPORTANTE :)
-ggplot(datos) + aes(x=Compuesto,y=mV, fill = Concentracion) + geom_boxplot(alpha=0.8) + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
+ggplot(datos) + aes(x=Compuesto,y=mV, fill = Concentracion) + scale_fill_grey() + geom_boxplot(alpha=0.8) + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
 # )))
 
 # === SUPUESTOS DEL MODELO === (((
@@ -112,4 +112,25 @@ for(comp in levels(Compuesto))
 			
 tabla_sd_reducida = SetNames(tabla_sd_reducida, c("Compuesto", "Concentracion", "Mean", "Sd"))
 tabla_sd_reducida
+# )))
+
+# === TABLA SD COMPUESTOS (machos) === (((
+sprintf(" --- TABLA SD COMPUESTOS (machos) --- ")
+tabla_sd_compuestos = data.frame(matrix(ncol = 3,nrow = 0))
+for(comp in levels(Compuesto))
+	{
+		nd = filter(datos,Compuesto == comp)
+		mean = mean(nd$mV)
+		desv_stand = sd(nd$mV)
+		tabla_sd_compuestos = rbind(tabla_sd_compuestos , c(comp, mean,desv_stand))
+	}
+			
+tabla_sd_compuestos = SetNames(tabla_sd_compuestos, c("Compuesto", "Mean", "Sd"))
+tabla_sd_compuestos
+
+# GRAFICA DEL AMOR
+grafica = data.frame(mean = as.numeric(tabla_sd_compuestos$Mean), sd = as.numeric(tabla_sd_compuestos$Sd), Compuesto = as.factor(tabla_sd_compuestos$Compuesto))
+str(grafica)
+ggplot(grafica ,aes(x=Compuesto) )+ geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity")
+# + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
 # )))

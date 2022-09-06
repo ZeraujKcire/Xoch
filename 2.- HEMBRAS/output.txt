@@ -1,7 +1,8 @@
-		[1] " --- SUPUESTOS DEL MODELO --- "
-
-	[1] " --- 1. NORMALIDAD --- "
-
+[1] " --- LIBRERIAS --- "
+[1] " --- DATOS --- "
+[1] " --- DIAGRAMA DE CAJAS SIMULTÁNEAS --- "
+[1] " --- SUPUESTOS DEL MODELO --- "
+[1] " --- 1. NORMALIDAD --- "
 [1] "Shapiro Test."
 
 	Shapiro-Wilk normality test
@@ -9,8 +10,8 @@
 data:  residuos
 W = 0.94059, p-value = 3.037e-06
 
-	[1] " --- 2. HOMOCEDASTICIDAD --- "
-
+[1] "KS Test"
+[1] " --- 2. HOMOCEDASTICIDAD --- "
 Levene's Test for Homogeneity of Variance (center = median)
        Df F value   Pr(>F)    
 group  15  7.4817 4.42e-12 ***
@@ -23,7 +24,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 data:  mV by interaction(Concentracion, Compuesto)
 Bartlett's K-squared = 102.56, df = 15, p-value = 4.265e-15
 
-
 [1] " --- 3. INDEPENDENCIA --- "
 
 	Durbin-Watson test
@@ -32,9 +32,7 @@ data:  regresion_lineal
 DW = 1.2516, p-value = 7.39e-10
 alternative hypothesis: true autocorrelation is greater than 0
 
-
 [1] " --- ANOVA --- "
-
 Analysis of Variance Table
 
 Response: mV
@@ -51,10 +49,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 [1] 159
 [1] "Desv. Estand."
 [1] 2.609482
-
-
 [1] " --- TUKEY COMPARACIONES --- "
-
   Tukey multiple comparisons of means
     95% family-wise confidence level
 
@@ -218,8 +213,6 @@ Nerolidol:1000-Mirceno:1000       1.0030  0.025641198  1.9803588 0.0379222
 Ocimeno:1000-Mirceno:1000        -2.4170 -3.394358802 -1.4396412 0.0000000
 Ocimeno:1000-Nerolidol:1000      -3.4200 -4.397358802 -2.4426412 0.0000000
 
-
-
 [1] "--- LSD ---"
 
 Study: regresion_lineal ~ c("Compuesto", "Concentracion")
@@ -272,8 +265,7 @@ Ocimeno:1000      7.7800      g
 Ocimeno:10        5.8518      h
 a-Terpineno:1000  5.2070      i
 a-Terpineno:10    4.4050      j
-
-" --- TABLA SD TRATAMIENTOS (hembras) --- "
+[1] " --- TABLA SD TRATAMIENTOS (hembras) --- "
      Compuesto Concentracion   Mean                Sd
 1     a-Pineno            10  8.441  1.43622537692847
 2     a-Pineno          1000 9.8276  1.32704008145111
@@ -291,3 +283,17 @@ a-Terpineno:10    4.4050      j
 14   Nerolidol          1000   11.2 0.631805173908681
 15     Ocimeno            10 5.8518 0.255322802219726
 16     Ocimeno          1000   7.78 0.500199960015992
+[1] " --- TABLA SD COMPUESTOS (hembras) --- "
+    Compuesto    Mean                Sd
+1    a-Pineno  9.1343  1.52224394960376
+2 a-Terpineno   4.806 0.661898386222697
+3  D-limoneno  11.912 0.531032757439392
+4    Dodecano   8.532 0.728586230131233
+5    Globulol 12.7545 0.434226171966929
+6     Mirceno  9.3113 0.989563492284936
+7   Nerolidol  10.878 0.599917538193024
+8     Ocimeno  6.8159  1.06198136072453
+'data.frame':	8 obs. of  3 variables:
+ $ mean     : num  9.13 4.81 11.91 8.53 12.75 ...
+ $ sd       : num  1.522 0.662 0.531 0.729 0.434 ...
+ $ Compuesto: Factor w/ 8 levels "a-Pineno","a-Terpineno",..: 1 2 3 4 5 6 7 8
