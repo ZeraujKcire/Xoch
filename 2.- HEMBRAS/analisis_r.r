@@ -11,6 +11,8 @@ suppressPackageStartupMessages(library(qqplotr))
 suppressPackageStartupMessages(library(stats))
 suppressPackageStartupMessages(library(DescTools))
 suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(reshape))
+suppressPackageStartupMessages(library(cowplot))
 # )))
 
 # === DATOS === (((
@@ -100,7 +102,7 @@ LSD.test(regresion_lineal , c("Compuesto" , "Concentracion") , alpha=0.05 , cons
 
 # === TABLA SD TRATAMIENTOS (hembras) === (((
 sprintf(" --- TABLA SD TRATAMIENTOS (hembras) --- ")
-tabla_sd_reducida = data.frame(matrix(ncol = 4,nrow = 0))
+tabla_sd_reducida = data.frame(matrix(ncol = 4,nrow = 0), stringsAsFactors = TRUE)
 for(comp in levels(Compuesto))
 	for (conc in levels(Concentracion))
 	{
@@ -121,21 +123,53 @@ ggplot(grafica ,aes(x=Compuesto,fill = Concentracion)) + scale_fill_grey() + geo
 
 # === TABLA SD COMPUESTOS (hembras) === (((
 # sprintf(" --- TABLA SD COMPUESTOS (hembras) --- ")
-# tabla_sd_compuestos = data.frame(matrix(ncol = 3,nrow = 0))
-# for(comp in levels(Compuesto))
-	# {
-		# nd = filter(datos,Compuesto == comp)
-		# mean = mean(nd$mV)
-		# desv_stand = sd(nd$mV)
-		# tabla_sd_compuestos = rbind(tabla_sd_compuestos , c(comp, as.numeric(mean),as.numeric(desv_stand)) )
-	# }
-			# 
-# tabla_sd_compuestos = SetNames(tabla_sd_compuestos, c("Compuesto", "Mean", "Sd"))
-# tabla_sd_compuestos
+tabla_sd_compuestos = data.frame(matrix(ncol = 3,nrow = 0))
+for(comp in levels(Compuesto))
+	{
+		nd = filter(datos,Compuesto == comp)
+		mean = mean(nd$mV)
+		desv_stand = sd(nd$mV)
+		tabla_sd_compuestos = rbind(tabla_sd_compuestos , c(comp, as.numeric(mean),as.numeric(desv_stand)) )
+	}
+			
+tabla_sd_compuestos = SetNames(tabla_sd_compuestos, c("Compuesto", "Mean", "Sd"))
+tabla_sd_compuestos
 
 # GRAFICA DEL AMOR
 grafica = data.frame(mean = as.numeric(tabla_sd_compuestos$Mean), sd = as.numeric(tabla_sd_compuestos$Sd), Compuesto = as.factor(tabla_sd_compuestos$Compuesto))
 str(grafica)
 ggplot(grafica ,aes(x=Compuesto) )+ geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity")
 # + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
+# )))
+
+# === GRAFICA === (((
+sprintf(" --- GRAFICA --- ")
+columnas = c(2,3,4)
+datos_grafica = data.frame(lapply(tabla_sd_reducida[,columnas], function(x) as.numeric(x)) )
+datos_grafica$Compuesto = factor(tabla_sd_reducida$Compuesto)
+
+ggplot(datos_grafica, aes(group = Concentracion, x = Compuesto,y = Mean, color = factor(Concentracion)) ) +
+	geom_errorbar(aes(y = Mean,ymin = Mean - Sd, ymax = Mean + Sd), width = 0.4) +
+ 	geom_point() +
+	theme_bw() +
+	scale_fill_manual(values = c("#b3b3b3", "#1a1a1a")) +
+	scale_color_manual(values = c("#b3b3b3", "#1a1a1a")) +
+	geom_line(size = 1.1) +
+	theme(text = element_text(size = 17)) +
+	labs(title = "Promedios HEMBRAS", y = "Promedio (mV)")
+
+ggsave("HEMBRAS_PROMEDIOS_BARRAS.png", width = 16, height = 9)
+ggsave("HEMBRAS_PROMEDIOS_BARRAS.pdf", width = 16, height = 9)
+
+ggplot(datos_grafica, aes(group = Concentracion, x = Compuesto,y = Mean, color = factor(Concentracion)) ) +
+	geom_ribbon(aes(ymin = Mean - Sd, ymax = Mean + Sd, fill= factor(Concentracion)), alpha = 0.7, colour = NA) +
+	scale_fill_manual(values = c("#999999", "#1a1a1a")) +
+ 	geom_line(size = 0.5) +
+	scale_color_manual(values = c("#ffffff", "#000000")) +
+ 	geom_point() +
+	theme_bw() +
+	labs(title = "Promedios HEMBRAS", y = "Promedio (mV)")
+
+ggsave("HEMBRAS_PROMEDIOS.png", width = 16, height = 9)
+ggsave("HEMBRAS_PROMEDIOS.pdf", width = 16, height = 9)
 # )))

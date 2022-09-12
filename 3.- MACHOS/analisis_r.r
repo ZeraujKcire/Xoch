@@ -139,3 +139,35 @@ ggplot(grafica ,aes(x=Compuesto,fill = Concentracion)) + scale_fill_grey() + geo
 # ggplot(grafica ,aes(x=Compuesto) )+ geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity")
 # + theme(legend.position = "bottom", text = element_text(size = 12), axis.text.x = element_text(angle = 90, hjust = 1))
 # )))
+
+# === GRAFICA === (((
+sprintf(" --- GRAFICA --- ")
+columnas = c(2,3,4)
+datos_grafica = data.frame(lapply(tabla_sd_reducida[,columnas], function(x) as.numeric(x)) )
+datos_grafica$Compuesto = factor(tabla_sd_reducida$Compuesto)
+
+ggplot(datos_grafica, aes(group = Concentracion, x = Compuesto,y = Mean, color = factor(Concentracion)) ) +
+	geom_errorbar(aes(y = Mean,ymin = Mean - Sd, ymax = Mean + Sd), width = 0.4) +
+ 	geom_point() +
+	theme_bw() +
+	scale_fill_manual(values = c("#b3b3b3", "#1a1a1a")) +
+	scale_color_manual(values = c("#b3b3b3", "#1a1a1a")) +
+	geom_line(size = 1.1) +
+	theme(text = element_text(size = 17)) +
+	labs(title = "Promedios MACHOS", y = "Promedio (mV)")
+
+ggsave("MACHOS_PROMEDIOS_BARRAS.png", width = 16, height = 9)
+ggsave("MACHOS_PROMEDIOS_BARRAS.pdf", width = 16, height = 9)
+
+ggplot(datos_grafica, aes(group = Concentracion, x = Compuesto,y = Mean, color = factor(Concentracion)) ) +
+	geom_ribbon(aes(ymin = Mean - Sd, ymax = Mean + Sd, fill= factor(Concentracion)), alpha = 0.7, colour = NA) +
+	scale_fill_manual(values = c("#999999", "#1a1a1a")) +
+ 	geom_line(size = 0.5) +
+	scale_color_manual(values = c("#ffffff", "#000000")) +
+ 	geom_point() +
+	theme_bw() +
+	labs(title = "Promedios HEMBRAS", y = "Promedio (mV)")
+
+ggsave("HEMBRAS_PROMEDIOS.png", width = 16, height = 9)
+ggsave("HEMBRAS_PROMEDIOS.pdf", width = 16, height = 9)
+# )))

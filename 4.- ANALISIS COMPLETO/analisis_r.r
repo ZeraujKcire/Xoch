@@ -136,7 +136,7 @@ for(sexo in levels(Sexo))
 			desv_stand = sd(nd$mV)
 			tabla_sd = rbind(tabla_sd , c(sexo, comp, conc,mean,desv_stand))
 		}
-			
+
 tabla_sd = SetNames(tabla_sd, c("Sexo", "Compuesto", "Concentracion", "Mean", "Sd"))
 tabla_sd
 # )))
@@ -152,7 +152,7 @@ for(comp in levels(Compuesto))
 		desv_stand = sd(nd$mV)
 		tabla_sd_reducida = rbind(tabla_sd_reducida , c(comp, conc,mean,desv_stand))
 	}
-			
+
 tabla_sd_reducida = SetNames(tabla_sd_reducida, c("Compuesto", "Concentracion", "Mean", "Sd"))
 tabla_sd_reducida
 # )))
