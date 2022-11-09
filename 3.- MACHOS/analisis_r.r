@@ -116,7 +116,13 @@ tabla_sd_reducida
 # GRAFICA EN BLANCO Y NEGRO
 grafica = data.frame(mean = as.numeric(tabla_sd_reducida$Mean), sd = as.numeric(tabla_sd_reducida$Sd), Compuesto = as.factor(tabla_sd_reducida$Compuesto), Concentracion = as.factor(tabla_sd_reducida$Concentracion))
 str(grafica)
-ggplot(grafica ,aes(x=Compuesto,fill = Concentracion)) + scale_fill_grey() + geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity") + theme(legend.position = "bottom", text = element_text(size = 17), axis.text.x = element_text(angle = 90, hjust = 1)) + ggtitle("Machos")
+ggplot(grafica ,aes(x=Compuesto,fill = Concentracion)) +
+ 	scale_fill_grey() +
+ 	geom_boxplot(aes(lower = mean - sd, upper = mean + sd, middle = mean, ymin = mean -3*sd, ymax = mean + 3*sd), stat = "identity") +
+ 	theme(legend.position = "bottom", text = element_text(size = 17), axis.text.x = element_text(angle = 90, hjust = 1)) +
+	labs(fill = "Concentración") +
+	ylim(0,22.5) +
+ 	ggtitle("Machos")
 ggsave("MACHOS.png")
 ggsave("MACHOS.pdf")
 # )))

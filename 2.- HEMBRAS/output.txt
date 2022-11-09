@@ -287,3 +287,17 @@ a-Terpineno:10    4.4050      j
  $ sd           : num  1.436 1.327 0.504 0.56 0.298 ...
  $ Compuesto    : Factor w/ 8 levels "a-Pineno","a-Terpineno",..: 1 1 2 2 3 3 4 4 5 5 ...
  $ Concentracion: Factor w/ 2 levels "10","1000": 1 2 1 2 1 2 1 2 1 2 ...
+    Compuesto    Mean                Sd
+1    a-Pineno  9.1343  1.52224394960376
+2 a-Terpineno   4.806 0.661898386222697
+3  D-limoneno  11.912 0.531032757439392
+4    Dodecano   8.532 0.728586230131233
+5    Globulol 12.7545 0.434226171966929
+6     Mirceno  9.3113 0.989563492284936
+7   Nerolidol  10.878 0.599917538193024
+8     Ocimeno  6.8159  1.06198136072453
+'data.frame':	8 obs. of  3 variables:
+ $ mean     : num  9.13 4.81 11.91 8.53 12.75 ...
+ $ sd       : num  1.522 0.662 0.531 0.729 0.434 ...
+ $ Compuesto: Factor w/ 8 levels "a-Pineno","a-Terpineno",..: 1 2 3 4 5 6 7 8
+[1] " --- GRAFICA --- "

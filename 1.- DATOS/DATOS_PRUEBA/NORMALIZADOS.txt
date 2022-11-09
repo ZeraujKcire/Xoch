@@ -1,0 +1,44 @@
+ 1	  0	  0	dodecano
+ 2	  2	  0	
+ 3	  9	  0	Dodecano
+ 4	 13	  0	Dodecano
+ 5	 28	  0	a-terpine
+ 6	1536	  0	
+ 7	 27	  0	a-terpine
+ 8	1641	  0	
+ 9	867	  0	
+10	  2	  0	ocineno
+11	  0	  0	
+12	  5	  0	ocineno 
+13	 73	  0	Nerolidol
+14	1602	  0	
+15	100	  0	Nerolidol
+16	100	  0	D-limonen
+17	 95	  0	D-limonen
+18	104	  0	D-limonen
+19	 76	  0	ocineno
+20	  0	  0	
+21	365	  0	
+22	 67	  0	ocineno
+23	246	  0	
+24	 72	  0	dodecano
+25	427	  0	
+26	201	  0	dodecano
+27	149	  0	dodecano
+28	 47	  0	dodecano
+29	144	  0	
+30	123	  0	dodecano
+31	 89	  0	
+32	231	  0	ovipostur
+33	368	  0	ovipostur
+34	1881	  0	ovipostur
+35	400	  0	hexano 
+36	-5953	  0	dodecano 
+37	-2359	  0	dodecano 
+38	-258	  0	
+39	-13411	  0	
+40	-1110	  0	
+41	-27	  0	
+42	-43	  0	
+43	  0	  0	
+
